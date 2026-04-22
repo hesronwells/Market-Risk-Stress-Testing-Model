@@ -71,48 +71,7 @@ Risk Metrics
 Calculated using Historical Simulation method on 2 years of daily returns:
 MetricDefinitionVaR 95%Maximum expected daily loss on 95% of daysCVaR 95%Average loss on the worst 5% of daysMax DrawdownLargest peak-to-trough decline over 2 years
 
-
-Project Structure
-stress-test-model/
-│
-├── README.md
-├── sql/
-│   ├── 01_schema.sql
-│   ├── 02_portfolio.sql
-│   ├── 03_scenarios.sql
-│   └── 04_sector_view.sql
-│
-├── python/
-│   └── stress_test.ipynb
-│
-└── charts/
-    ├── chart1_pnl_distribution.png
-    ├── chart2_cumulative_drawdown.png
-    └── chart3_scenario_comparison.png
-
-
-How to Run
-Prerequisites
-
-
-MySQL 8.0
-Python 3.9 with: yfinance, pymysql, pandas, numpy, scipy, matplotlib, seaborn
-Power BI Desktop with MySQL Connector/NET 8.0.40
-
-
-Steps
-
-
-Run SQL scripts in order: 01_schema.sql → 02_portfolio.sql → 03_scenarios.sql → 04_sector_view.sql
-Open stress_test.ipynb in Jupyter and update DB_CONFIG with your MySQL password
-Run all cells top to bottom
-Open Power BI, connect to localhost:3306 / stress_test_db, load all tables and the view
-Build the dashboard or open the included .pbix file
-
-
-
 Key Design Decisions
-
 
 Historical shocks from real data — Python calculates actual crisis returns from Yahoo Finance rather than using hardcoded estimates
 Peak-to-trough methodology — captures worst-case drawdown within the crisis window, more conservative than simple period returns
